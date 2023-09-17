@@ -13,8 +13,8 @@ The program runs on mobile devices and takes user's general location to display 
     - If the project doesn't open properly, you may have to create a new project, then put all files into that new project.
 2. Add a phone emulator to Android Studio.
 3. Set your location in the emulator, and be sure to enable location stuff in the emulator.
-    - If the program doesn't allow the weather to be shown, you may need to change the API key in `app.js`
-5. Run the program through Android Studio
+    - If the program doesn't allow the weather to be shown, you may need to change the API key in `app.js`.
+5. Run the program through Android Studio.
 
 ## Screenshots:
 *Example display of weather at George Brown College's Casa Loma Campus:*
