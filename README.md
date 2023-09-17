@@ -1,6 +1,6 @@
 # COMP 3074 OpenWeather Mobile App
 ### Year: 2021
-This project was made for COMP\*3074 (Mobile Application Development I) at George Brown College.
+This project was made for COMP 3074 (Mobile Application Development I) at George Brown College.
 
 The program runs on mobile devices and takes user's general location to display the current weather using [OpenWeather's API](https://openweathermap.org/api).
 
