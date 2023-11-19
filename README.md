@@ -16,7 +16,8 @@ The program runs on mobile devices and takes user's general location to display 
     - If the program doesn't allow the weather to be shown, you may need to change the API key in `app.js`.
 5. Run the program through Android Studio.
 
-## [Video Demo](https://msirna.github.io/static/videos/COMP3074%20Demo.mp4)
+## Video Demo:
+https://github.com/msirna/COMP3074-F21-OpenWeather-App/assets/91761269/89e1b30a-76b6-43b5-beb1-55dee062acd2
 
 ## Screenshots:
 *Example display of weather at George Brown College's Casa Loma Campus:*
