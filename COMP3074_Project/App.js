@@ -4,7 +4,7 @@ import * as Location from 'expo-location';
 import { MainData, CompressedMainData, MoreInfo } from './components/Current';
 import Forecast from './components/Forecast'
 
-const apiKey = '2ce65f761eb182f61b2fbc41ecddc8d1';
+const apiKey = '';
 
 const HEADER_EXPANDED_HEIGHT = 600;
 const HEADER_COLLAPSED_HEIGHT = 150;
