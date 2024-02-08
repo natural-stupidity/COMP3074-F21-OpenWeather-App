@@ -10,7 +10,8 @@ The program runs on mobile devices and takes user's general location to display 
 
 ## How to Run:
 ```
-Note a lot of the packages I used in 2021 are now deprecated, so a lot of fixes may have to be made. Eventually I hope to go through this and fix everything up so it can run properly again.
+Note: a lot of the packages I used in 2021 are now deprecated, so a lot of fixes may have to be made.
+Eventually I hope to go through this and fix everything up so it can run properly again.
 ```
 1. Open a terminal and navigate to the project folder.
 2. Type `npm install` to install all packages in the project.
