@@ -9,12 +9,15 @@ The program runs on mobile devices and takes user's general location to display 
 **API:** [OpenWeather API](https://openweathermap.org/api).
 
 ## How to Run:
-1. Open the project in Android Studio.
-    - If the project doesn't open properly, you may have to create a new project, then put all files into that new project.
-2. Add a phone emulator to Android Studio.
-3. Set your location in the emulator, and be sure to enable location stuff in the emulator.
+```
+Note a lot of the packages I used in 2021 are now deprecated, so a lot of fixes may have to be made. Eventually I hope to go through this and fix everything up so it can run properly again.
+```
+1. Open a terminal and navigate to the project folder.
+2. Type `npm install` to install all packages in the project.
+3. Type `npm start` to start the project.
+4. When prompted, type `a` to open the project on your android emulator.
+    - Make sure you have Android Studio installed with the emulator open.
     - If the program doesn't allow the weather to be shown, you may need to change the API key in `app.js`.
-5. Run the program through Android Studio.
 
 ## Video Demo:
 https://github.com/msirna/COMP3074-F21-OpenWeather-App/assets/91761269/89e1b30a-76b6-43b5-beb1-55dee062acd2
