@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     moreInfoValue: {
         color: '#eee',
         fontSize: 15,
-        fontWeight: '100'
+        fontWeight: '200'
     }
 })
 

@@ -5,15 +5,15 @@ import moment from 'moment-timezone';
 const Title = ({ op, pb }) => {
     return (
         <View style={{ alignItems: 'center', }}>
-            <Animated.View style={{ width: 25, height: 3, backgroundColor: 'white', borderRadius: 15, top: 10, opacity: op, }}></Animated.View>
-            <Animated.Text style={{ textAlign: 'center', fontSize: 20, color: 'white', top: 10, paddingBottom: pb, opacity: op, }}>Forecast</Animated.Text>
+            <Animated.View style={{ width: 25, height: 3, backgroundColor: 'white', borderRadius: 15, top: 15, opacity: op, }}></Animated.View>
+            <Animated.Text style={{ textAlign: 'center', fontSize: 20, color: 'white', top: 20, paddingBottom: pb, opacity: op, }}>Forecast</Animated.Text>
         </View>
     )
 }
 
 const SmallForecast = ({ data, op }) => {
     return (
-        <Animated.View style={{ marginTop: 30, flexDirection: 'row', opacity: op }}>
+        <Animated.View style={{ marginTop: 45, marginLeft: -16, flexDirection: 'row', opacity: op, position: 'absolute' }}>
             {data.daily && data.daily.length > 0 ?
                 (data.daily).map((forecast, index) => (
                     index !== 0 && index !== 7 &&
@@ -31,14 +31,14 @@ const SmallForecast = ({ data, op }) => {
 
 const LargeForecast = ({ data, op, screenWidth }) => {
     return (
-        <Animated.View style={{ flexDirection: 'column', opacity: op, paddingBottom: 180 }}>
+        <Animated.View style={{ flexDirection: 'column', opacity: op, paddingBottom: 35, marginTop: 45, }}>
             {data.daily && data.daily.length > 0 ?
                 (data.daily).map((forecast, index) => (
                     index !== 0 && index !== 7 &&
                     <View key={index} style={[styles.forecastItemColumn, screenWidth ]}>
                         <Image style={styles.forecastIconColumn} source={{ uri: "http://openweathermap.org/img/wn/" + forecast.weather[0].icon + "@2x.png" }} />
                         <View style={{ flexDirection: 'column', justifyContent: 'space-between' }}>
-                            <Text style={styles.forecastDayColumn}>{moment(forecast.dt * 1000).format('dddd')}</Text>
+                            <Text style={styles.forecastDayColumn}>{moment(forecast.dt * 1000).format('dddd, MMMM Do')}</Text>
                             <Text style={styles.forecastDayColumn}>{forecast.weather[0].main}</Text>
                         </View>
                         <Text style={styles.forecastTemp}>{forecast.temp.day}&#176;C</Text>
@@ -53,38 +53,35 @@ const LargeForecast = ({ data, op, screenWidth }) => {
 const Forecast = ({ heh, scrollY, data, op1, op2, screenWidth }) => {
     return (
         <ScrollView
-            contentContainerStyle={{ padding: 16, paddingTop: heh, alignItems: 'center', }}
+            contentContainerStyle={{ paddingTop: heh, alignItems: 'center', }}
             onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })}
             scrollEventThrottle={16}>
 
-            <Title op={op1} pb={0} />
-            <SmallForecast data={data} op={op1} />
-
-            <Title op={op2} pb={15} />
-            <LargeForecast data={data} op={op2} screenWidth={ screenWidth } />
+            <Title pb={0} />
+            <View>
+                <SmallForecast data={data} op={op1} />
+                <LargeForecast data={data} op={op2} screenWidth={ screenWidth } />
+            </View>
         </ScrollView>
     )
 }
 
 const styles = StyleSheet.create({
-    image: {
-        width: 100,
-        height: 100
-    },
     forecastItemRow: {
         justifyContent: 'center',
         backgroundColor: '#00000033',
         borderRadius: 10,
         borderColor: "#eee",
         borderWidth: 1,
-        padding: 5,
+        padding: 4,
+        marginHorizontal: 3,
     },
     forecastDayRow: {
         fontSize: 15,
         color: "white",
         textTransform: 'uppercase',
         textAlign: "center",
-        fontWeight: "200",
+        fontWeight: "400",
         marginBottom: 5,
     },
     forecastIconRow: {
@@ -95,7 +92,7 @@ const styles = StyleSheet.create({
         flex: 1.5,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        height: 50,
+        height: 90,
         backgroundColor: '#00000033',
         borderRadius: 10,
         borderColor: "#EEE",
@@ -108,6 +105,7 @@ const styles = StyleSheet.create({
         color: "white",
         textAlign: "center",
         fontWeight: "200",
+        marginVertical: 5,
     },
     forecastIconColumn: {
         width: 100,
@@ -117,7 +115,7 @@ const styles = StyleSheet.create({
     forecastTemp: {
         fontSize: 18,
         color: "white",
-        fontWeight: "100",
+        fontWeight: "200",
         textAlign: "center",
         marginRight: 15,
     },

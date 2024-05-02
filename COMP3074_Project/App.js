@@ -6,12 +6,11 @@ import Forecast from './components/Forecast'
 
 const apiKey = '';
 
-const HEADER_EXPANDED_HEIGHT = 600;
+const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("screen");
+const HEADER_EXPANDED_HEIGHT = SCREEN_HEIGHT * 0.75;
 const HEADER_COLLAPSED_HEIGHT = 150;
-const { width: SCREEN_WIDTH } = Dimensions.get("screen")
 
 export default function App() {
-
     const [scrollY, setScrollY] = useState(new Animated.Value(0));
     const [date, setDate] = useState("");
     const [city, setCity] = useState("");
@@ -75,7 +74,7 @@ export default function App() {
 
         (async () => {
             let { status } = await Location.requestForegroundPermissionsAsync();
-            let latitude = "34.0522", longitude = "-79.4108";
+            let latitude = "43.6762", longitude = "-79.4103";
             if (status === 'granted') {
                 let location = await Location.getCurrentPositionAsync({});
                 latitude = location.coords.latitude;
@@ -83,9 +82,13 @@ export default function App() {
             }
             fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=5&appid=${apiKey}`).then(response => response.json()).then(cityInfo => {
                 //console.log(cityInfo);
-                setCity(cityInfo[0].name);
+                if (cityInfo[0].state){
+                    setCity(cityInfo[0].name + ", " + cityInfo[0].state);
+                }
+                else
+                    setCity(cityInfo[0].name + ", " + cityInfo[0].country);
             })
-            fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely&units=metric&appid=${apiKey}`).then(res => res.json()).then(data => {
+            fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely&units=metric&appid=${apiKey}`).then(res => res.json()).then(data => {
                 //console.log(data);
                 setData(data);
 
@@ -103,7 +106,7 @@ export default function App() {
     return (
         <View style={{ flex: 1, backgroundColor: '#18181bcc', }}>
             {data.daily && data.daily.length > 0 ?
-                <BackgroundItem weather={data.current.weather[0].main} time={new Date().getTime()} sunrise={data.current.sunrise} sunset={data.current.sunset} />
+                <BackgroundItem weather={data.current.weather[0].main} time={data.current.dt} sunrise={data.current.sunrise} sunset={data.current.sunset} />
                 : <Animated.Image source={images.night} style={[styles.header, { height: headerHeight }]} />
             }
             {data.daily && data.daily.length > 0 ?
